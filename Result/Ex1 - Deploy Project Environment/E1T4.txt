@@ -1,0 +1,9 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+InstanceRolePolicy-C3 permission is too powerfull (all action on all s3 bucket), we should provide least privilege. Because the client
+only need to access recipes on free recipes bucket.
+
+# Poor practice 2
+We should put the "RecipeWebServiceInstance" on the private subnet and set up the security group of this instance 
+only accept inbound traffic from security group of Application Load Blancer instead of openning too many port and protocol.

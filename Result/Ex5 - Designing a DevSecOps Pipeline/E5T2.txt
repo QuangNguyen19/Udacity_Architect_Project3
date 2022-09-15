@@ -1,0 +1,31 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+
+- cfn-lint: https://github.com/aws-cloudformation/cfn-python-lint
+
+### Example vulnerability
+
+- IAM instance profile are too powerful.
+- Security of web instance are too open.
+
+
+##Scan AMI’s or containers for OS vulnerabilities
+
+AWS Inspector
+
+### Example vulnerability
+
+- SSH root access with password login
+- instance opened too many ports
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+
+- AWS Config
+- AWS Inspector
+- AWS GuardDuty
+
+### Example vulnerability
+- Web instance open too many ports.
+- S3-bucket-server-side-encryption is not set to default.
+

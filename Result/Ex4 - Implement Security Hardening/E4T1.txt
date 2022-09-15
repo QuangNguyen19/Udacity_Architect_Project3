@@ -1,0 +1,13 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+- Put RecipeWebServiceInstance on private subnet and set security to only allow access from ALB security group.
+- Allow SSH only for developers that have right roles.
+
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+- Edit InstanceProfileRole only allow access to S3BucketRecipesFree.
+- Enable server-side encryption on all the S3 buckets.
+- Set trust policy of S3 bucket only accept InstanceProfileRole.
+
+

@@ -1,0 +1,16 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+1. IAM instance profile is not following the principle of least privilege, allowing full access to resources. 
+2. Loadbalancer does not have HTTPS redirection
+3. Security group of RecipeWebServiceInstance are too open
+4. Server-side encryption and logging is not enabled for S3 buckets
+5. RecipeWebServiceInstance are public to internet
+
+Recommendations on how to remediate the vulnerabilities
+
+1. Edit IAM instance profile only provide  least privilege
+2. Application Load Balancer sholud only use HTTPS protocol
+3. Set Security group of RecipeWebServiceInstance only accpet inbound traffic from ALB Security group
+4. Turn on S3 server-side encryption and logging
+5. Put RecipeWebServiceInstance on private subnet.
+

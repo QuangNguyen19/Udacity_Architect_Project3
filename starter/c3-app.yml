@@ -9,6 +9,7 @@ Parameters:
     Default: "ami-01fcf79ce78f46764"
   KeyPair:
     Type: String
+    Default: "udacity"
     Description: "Name of an existing KeyPair you will use to access the EC2 instances in this exercise. Be sure you have access to the private key file corresponding to this keypair."
 
 
@@ -32,8 +33,8 @@ Resources:
             Version: 2012-10-17
             Statement:
               - Effect: Allow
-                Action: 's3:*'
-                Resource: '*'
+                Action: 's3:GetObject'
+                Resource: 'arn:aws:s3:::cand-c3-free-recipes-990661255882'
 
   InstanceProfileRole:
     Type: AWS::IAM::InstanceProfile
@@ -48,23 +49,24 @@ Resources:
       GroupName: WebAppSG
       GroupDescription: "Security group for this application server"
       SecurityGroupEgress:
-      - IpProtocol: -1
-        CidrIp: 0.0.0.0/0
-      SecurityGroupIngress:
-      - IpProtocol: -1
-        CidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        FromPort: 22
-        ToPort: 22
-        CidrIp: 0.0.0.0/0
+      # - IpProtocol: -1
+      #   CidrIp: 0.0.0.0/0
+      # SecurityGroupIngress:
+      # - IpProtocol: -1
+      #   CidrIp: 0.0.0.0/0
+      # - IpProtocol: tcp
+      #   FromPort: 22
+      #   ToPort: 22
+      #   CidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         FromPort: 5000
         ToPort: 5000
-        CidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        FromPort: 80
-        ToPort: 80
-        CidrIp: 0.0.0.0/0
+        SourceSecurityGroupId: !Ref AppLoadBalancerSG
+      #   CidrIp: 0.0.0.0/0
+      # - IpProtocol: tcp
+      #   FromPort: 80
+      #   ToPort: 80
+      #   CidrIp: 0.0.0.0/0
       VpcId: !ImportValue VpcId
 
   RecipeWebServiceInstance:
